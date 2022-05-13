@@ -1,0 +1,7 @@
+---
+applications:
+- name: simple
+  disk_quota: 2G
+  health-check-type: process
+  env:
+    DOTNET_CLI_TELEMETRY_OPTOUT: 1
