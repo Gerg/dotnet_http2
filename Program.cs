@@ -27,8 +27,8 @@ namespace net_http2_sample
                 {
                     webBuilder.ConfigureKestrel((options) =>
                     {
-                        string port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-                        options.ListenAnyIP(Int32.Parse(port), o => o.Protocols = HttpProtocols.Http2);
+                        options.ConfigureEndpointDefaults(lo => lo.Protocols = HttpProtocols.Http2);
+                        options.AllowAlternateSchemes = true;
                     });
                     webBuilder.UseStartup<Startup>();
                 });
