@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 
-namespace simple_3._1_source
+namespace net_http2_sample
 {
     public class Program
     {
@@ -27,7 +27,8 @@ namespace simple_3._1_source
                 {
                     webBuilder.ConfigureKestrel((options) =>
                     {
-                        options.ConfigureEndpointDefaults(lo => lo.Protocols = HttpProtocols.Http2);
+                        string port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+                        options.ListenAnyIP(Int32.Parse(port), o => o.Protocols = HttpProtocols.Http2);
                     });
                     webBuilder.UseStartup<Startup>();
                 });

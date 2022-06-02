@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace simple_3._1_source
+namespace net_http2_sample
 {
     public class Startup
     {
@@ -32,9 +32,9 @@ namespace simple_3._1_source
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    Console.WriteLine("Request:");
-                    Console.WriteLine(context.Request.Protocol);
-                    await context.Response.WriteAsync("Hello From Dotnet 3.1");
+                    string protocol = context.Request.Protocol;
+                    Console.WriteLine($"Request Protocol: {protocol}");
+                    await context.Response.WriteAsync($"Hello! Protocol: {protocol}");
                 });
             });
         }
